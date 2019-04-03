@@ -42,3 +42,7 @@ Takes a valid [VNS](#) name, like `raleighca.vet`, or `vexchange.vet`.
 Returns a Promise that resolves to a hex-prefixed hexadecimal string for the resolved address.
 
 
+## Current Supported Networks
+
+- Mainnet (id: 74)
+- Testnet (id: 39)
