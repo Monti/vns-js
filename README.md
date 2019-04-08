@@ -10,12 +10,14 @@ Install from npm:
 
 ## Usage
 
+
 ```javascript
 import VNS from 'vns-js';
 
 // Passing connex is required
 const vns = new VNS(window.connex);
 
+// domain or subdomain
 vns.lookup('raleighca')
 .then(address => {
   const expected = '0x4f8f68a0d1cbc75f6ef764a44619277092c32df0';
@@ -37,7 +39,7 @@ vns.lookup('raleighca')
 
 ### vns.lookup( domain )
 
-Takes a valid [VNS](#) name, like `raleighca.vet`, or `vexchange.vet`.
+Takes a valid [VNS](#) domain or subdomain, like `raleighca.vet`, or `raleighca.vexchange.vet`.
 
 Returns a Promise that resolves to a hex-prefixed hexadecimal string for the resolved address.
 
