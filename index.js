@@ -14,8 +14,8 @@ class VNS {
     }
 
     this.connex = connex;
-    this.abi = Registry.abi;
     this.networkId = null;
+    this.abi = Registry.abi;
     this.networkId = this.getNetworkId();
   }
 
@@ -27,9 +27,16 @@ class VNS {
   async lookup(domain) {
     const networkId = await this.networkId;
     const address = addresses[networkId];
-    const abi = find(this.abi, { name: 'resolveDomain' });
-    const resolveDomain = this.connex.thor.account(address).method(abi);
-    const { decoded: { 0: resolver } } = await resolveDomain.call(domain);
+    let abi;
+
+    if (domain.indexOf('.') !== -1) {
+      abi = find(this.abi, { name: 'resolveSubDomain' });
+    } else {
+      abi = find(this.abi, { name: 'resolveDomain' });
+    }
+
+    const clause = this.connex.thor.account(address).method(abi);
+    const { decoded: { 0: resolver } } = await clause.call(domain);
 
     return resolver;
   }
